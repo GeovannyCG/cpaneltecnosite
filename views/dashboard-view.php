@@ -119,18 +119,18 @@
             </div>
           </a>
         </li>
-        <?php if($showOption == true):?>
-        <li class="sidebar-list-item" id="option4">
-          <a href="./Accounts">
-            <div class="optionMenu">
-              <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
-                <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" />
-              </svg>
-              <P>Gestion de cuentas</P>
-            </div>
-          </a>
-        </li>
-        <?php endif;?>
+        <?php if ($showOption == true) : ?>
+          <li class="sidebar-list-item" id="option4">
+            <a href="./Accounts">
+              <div class="optionMenu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+                  <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" />
+                </svg>
+                <P>Gestion de cuentas</P>
+              </div>
+            </a>
+          </li>
+        <?php endif; ?>
       </ul>
     </aside>
     <!-- End Sidebar -->
@@ -183,7 +183,15 @@
         <div class="grid-containers">
           <!-- Tabla para las cotizaciones entrantes -->
           <div class="container-table">
-            <h3><span class="material-icons-outlined">inbox</span> Solicitudes de cotizaciones</h3>
+            <div class="header-container-table">
+              <!-- Titulo -->
+              <h5><i class="bi bi-file-earmark-plus-fill"></i> Nuevas cotizaciones</h5>
+
+              <!-- Herramientas -->
+              <div class="acciones">
+                <button class="btn btn-primary refresh" type="button"><i class="bi bi-arrow-clockwise"></i></button>
+              </div>
+            </div>
 
             <table class="table table-dark">
               <thead>
@@ -198,120 +206,374 @@
               </tbody>
             </table>
 
-            <a class="btn-show-more" href="">Mostrar todas las solicitudes</a>
+            <a class="btn-show-more" href="">Mostrar todas las nuevas cotizaciones</a>
           </div>
-
-          <!-- Tabla para mostrar las solicitudes de actualizacion de una cotizacion -->
-          <?php if ($getRoll == true) : ?>
-          <div class="container-table">
-            <h6><span class="material-icons-outlined">question_answer</span> Mis solicitudes para edicion de cotizacion</h6>
-
-            <table class="table table-dark">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">Titulo</th>
-                  <th scope="col">Estado</th>
-                  <th scope="col">Acciones</th>
-                </tr>
-              </thead>
-              <tbody id="updateRequestT">
-              </tbody>
-            </table>
-          </div>
-          <?php endif;?>
         </div>
 
         <?php if ($getRoll == true) : ?>
           <div id="second-section">
             <h6>Administracion</h6>
-            <!-- Tabla para mostrar las solicitudes de desbloqueos de cuentas -->
+            <!-- Tabla para mostrar las cotizaciones activas -->
             <div class="container-table">
-              <h3><span class="material-icons-outlined">lock_open</span> Solicitudes de desbloqueo de cuenta</h3>
+              <div class="header-container-table">
+                <!-- Titulo -->
+                <h5><i class="bi bi-box2-fill"></i> Cotizaciones activas</h5>
+
+                <!-- Herramientas -->
+                <div class="acciones">
+                  <button class="btn btn-primary refresh" type="button"><i class="bi bi-arrow-clockwise"></i></button>
+                </div>
+              </div>
 
               <table class="table table-dark">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">ID Cuenta</th>
-                    <th scope="col">Correo</th>
-                    <th scope="col">Fecha de solicitud</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Acciones</th>
+                    <th scope="col">Folio</th>
+                    <th>Fecha de creacion</th>
+                    <th>Nombre completo</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="tbody-quotes-actives">
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
                   </tr>
                 </tbody>
               </table>
 
-              <a href="" class="btn-show-more">Mostrar todas las solicitudes de desbloqueo</a>
+              <a href="./Quotes" class="btn-show-more">Mostrar todas  las cotizaciones activas</a>
             </div>
 
-            <!-- Tabla para mostrar las solicitudes de actualizacion de cotizaciones -->
-            <!-- <div class="container-table">
-              <h3><i class="bi bi-pencil-square"></i> Solicitudes de actualizacion</h3>
+            <!-- Tabla para mostrar el historial de cotizaciones -->
+            <div class="container-table">
+              <div class="header-container-table">
+                <!-- Titulo -->
+                <h5><i class="bi bi-clock-history"></i> Historial de cotizaciones</h5>
+
+                <!-- Herramientas -->
+                <div class="acciones">
+                  <button class="btn btn-primary refresh" type="button"><i class="bi bi-arrow-clockwise"></i></button>
+                </div>
+              </div>
 
               <table class="table table-dark">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Titulo</th>
-                    <th scope="col">Descripcion</th>
-                    <th scope="col">Fecha de solicitud</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Acciones</th>
+                    <th scope="col">Folio</th>
+                    <th>Fecha de creacion</th>
+                    <th>Nombre completo</th>
+                    <th>Estado</th>
+                    <th>Visualizar</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="tbody-quotes-history">
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
                   </tr>
                 </tbody>
               </table>
 
-              <a class="btn-show-more" href="">Mostrar todas las solicitudes de actualizacion</a>
-            </div> -->
+              <a href="./Quotes" class="btn-show-more">Mostrar todo el historial</a>
+            </div>
 
-            <!-- Tabla para mostrar las actividades recientes de los usuarios -->
-            <!-- <div class="container-table">
-              <h3><span class="material-icons-outlined">history_toggle_off</span> Historial de acciones</h3>
+            <!-- Tabla para mostrar las cuentas de los usuarios activos -->
+            <div class="container-table">
+              <div class="header-container-table">
+                <!-- Titulo -->
+                <h5><i class="bi bi-people-fill"></i> Cuentas de usuarios</h5>
+
+                <!-- Herramientas -->
+                <div class="acciones">
+                  <button class="btn btn-primary refresh" type="button"><i class="bi bi-arrow-clockwise"></i></button>
+                </div>
+              </div>
 
               <table class="table table-dark">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Accion</th>
-                    <th scope="col">Fecha</th>
-                    <th scope="col">Correo</th>
-                    <th scope="col">ID usuario</th>
+                    <th scope="col">ID</th>
+                    <th>Nombres(s)</th>
+                    <th>Apellidos</th>
+                    <th>Correo</th>
+                    <th>Roll</th>
+                    <th>Estado</th>
+                    <th>Visualizacion</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="tbody-quotes-accounts">
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Otto</td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
+                    <td>
+                      <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                      </p>
+                    </td>
                   </tr>
                 </tbody>
               </table>
 
-              <a class="btn-show-more" href="">Mostrar todas las actividades</a>
-            </div> -->
+              <a href="./Accounts" class="btn-show-more">Mostrar mas informacion de cuentas</a>
+            </div>
           </div>
         <?php endif; ?>
 

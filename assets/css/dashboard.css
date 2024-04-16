@@ -34,13 +34,6 @@
 
 /* CSS para las tablas */
 
-.grid-containers {
-    display: grid;
-    grid-template-columns: 1.3fr 1fr; /* Tres columnas de igual ancho */
-    grid-template-rows: auto; /* Altura de las filas automáticamente ajustada al contenido */
-    gap: 10px; /* Espacio entre celdas */
-}
-
 /* Estilo para los botones de accion */
 
 .actions-buttons {
@@ -65,4 +58,18 @@
     color: white;
 }
 
-/* Estilos para el modal */
+/* Estilos para los encabezados de la tabla */
+/* Estilo para el encabezado de las tablas que tienen titulo y buscador*/
+.header-container-table {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 57px;
+}
+
+/* Estilo para el contenedor de las herramientas para cada una de las tablas */
+.header-container-table .acciones {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+}

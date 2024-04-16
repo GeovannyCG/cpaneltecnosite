@@ -87,36 +87,6 @@ class Dashboard_model
         return json_encode($response);
     }
 
-    //Funcion para extraer las solicitudes de actualizacion de cotizaciones de un usuario en especifico
-    public function getUpdateRequestE($email)
-    {
-
-        // Obtener el ID del usuario
-        $getId = "SELECT id_u FROM users_tecnosite WHERE email_u = ?";
-        $stwgetId = $this->conn->prepare($getId);
-        $stwgetId->bind_param("s", $email);
-        $stwgetId->execute();
-        $results = $stwgetId->get_result();
-
-        $rows = $results->fetch_array();
-        $id = $rows[0];
-
-        $query = "SELECT * FROM update_request_tecnosite WHERE id_user = ? AND (state_ur = 'send' OR state_ur = 'pending' OR state_ur = 'denied' OR state_ur = 'accepted') LIMIT 10";
-        $stw = $this->conn->prepare($query);
-        $stw->bind_param("i", $id);
-        $stw->execute();
-
-        $result = $stw->get_result();
-
-        $response = array();
-
-        while ($row = $result->fetch_assoc()) {
-            $response[] = $row;
-        }
-
-        return $response;
-    }
-
     //Funcion para determninar si el usuario es administrador (funcion interna)
     public function showPageAdmin($email)
     {
@@ -159,5 +129,48 @@ class Dashboard_model
             // Manejar cualquier excepción y devolver un mensaje de error
             return "Error al contar cotizaciones: " . $th->getMessage();
         }
+    }
+
+    /**
+     * Funciones heredadas de otras 
+     */
+
+    // Obtener todas las cotizaciones que ya forman parte del historial
+    public function getHistoryQuotes()
+    {
+        $query = "SELECT * FROM quotations_history_tecnosite LIMIT 10";
+        $result = mysqli_query($this->conn, $query);
+        $response = array();
+        while ($row = $result->fetch_assoc()) {
+            $response[] = $row;
+        }
+        return $response;
+    }
+
+    //Funcion para extraer todas las cotizaciones que estan siendo gestionadas (ADMINISTRADOR)
+    public function getAllActiveQuotes()
+    {
+        $getAllQuotes = "SELECT * FROM quotations_tecnosite WHERE status_q IN ('takeit', 'confirmation-sent', 'confirmation-made', 'unasnwered-confirmation', 'bill-shiping', 'payment-made', 'unasnwered-payment', 'order-delivery', 'order-made', 'unasnwered-order', 'shipment-made', 'shipping-difficulties', 'order-hold', 'order-cancellation', 'order-delivered') LIMIT 10";
+        $respesta = mysqli_query($this->conn, $getAllQuotes);
+
+        $response = array();
+        while ($row = $respesta->fetch_assoc()) {
+            $response[] = $row;
+        }
+
+        return $response;
+    }
+
+    //Obtener todas las cuentas activas actualmente
+    public function getAllAccounts()
+    {
+        $getAccounts = "SELECT * FROM users_tecnosite LIMIT 10";
+        $executeAccounts = mysqli_query($this->conn, $getAccounts);
+
+        $response = array();
+        while ($row = $executeAccounts->fetch_assoc()) {
+            $response[] = $row;
+        }
+        return $response;
     }
 }
