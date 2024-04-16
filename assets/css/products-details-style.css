@@ -1,0 +1,48 @@
+/* Estilo para la primera seccion de informacion */
+.first-information {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 20px;
+}
+
+/* Estilo para el pequeño enunciado debajo del titulo */
+.subTitle {
+    font-size: 14px;
+}
+
+/* Estilo para la seccion de quick resume de los datos del proyecto */
+.quick-resume {
+    min-width: 400px;
+    max-width: 500px;
+}
+
+/* Estilos para la segunda seccion de los datos del producto */
+.rest-information {
+    padding: 20px 20px;
+}
+
+.rest-information .rest-information-text {
+    padding: 20px 20px;
+}
+
+.format-list {
+    columns: 2;
+    list-style-type: none;
+}
+
+.rest-information .tables-second-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas de igual ancho */
+    grid-auto-rows: auto; /* Altura de las filas automáticamente ajustada al contenido */
+    gap: 10px; /* Espacio entre celdas */
+    grid-auto-flow: row; /* Los elementos se colocan en filas */
+}
+
+.rest-information .rest-information-table {
+    background-color: #263043;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    height: max-content; /* Establece una altura basada en el contenido */
+}

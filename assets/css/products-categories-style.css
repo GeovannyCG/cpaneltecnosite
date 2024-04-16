@@ -1,0 +1,92 @@
+/* CSS para hacer que el sider bar de las ofertas este en la derecha */
+.categories {
+    left: 0;
+    width: 230px;
+    padding: 10px;
+    overflow: scroll;
+    height: 500px;
+    overflow-x: hidden;
+}
+
+#mainContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.products-container {
+    width: 100%;
+    /* background-color: red; */
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* justify-content: space-around; */
+}
+
+.card-product {
+    width: 240px;
+    height: auto;
+    background-color: #263043;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin: 5px;
+}
+
+.card-product img {
+    height: 210px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-product .card-body {
+    padding: 10px;
+}
+
+.div-button-show {
+    display: grid;
+    place-content: center;
+}
+
+.show-more-products {
+    padding: 10px;
+    background-color: #7CA9FF;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    transition: color 0.3s ease;
+}
+
+.show-more-products:hover {
+    background-color: white;
+    color: black;
+}
+
+/* Estilos para la seccion de los productos */
+
+/* Estilos para el encabezado secundario de los productos */
+
+.header-catalogue {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+
+/* CSS nuevo para las categorias */
+.search-tools {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: auto;
+    height: 37px;
+}
+
+.search-tools .form-select {
+    width: 300px;
+}
+
+.search-tools #buscador {
+    margin-right: 10px;
+    width: 300px;
+}

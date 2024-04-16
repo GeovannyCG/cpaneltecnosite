@@ -1,0 +1,81 @@
+/* Estilos para div del contenido principal */
+#mainContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Estilos para los contenedores de las tablas */
+.container-table {
+    background-color: #263043;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    height: max-content;
+}
+
+/* Estilo para el encabezado de las tablas que tienen titulo y buscador*/
+.header-container-table {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 57px;
+}
+
+/* Estilo para el contenedor de las herramientas para cada una de las tablas */
+.header-container-table .acciones {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+/* Buscador */
+.header-container-table .buscador {
+    width: 300px;
+}
+
+/* Estilo para los botones de recarga */
+.acciones .refresh {
+    margin-right: 10px;
+}
+
+/* Estilo para los botones de accion en las tablas */
+.actions-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* Color de fondo para los botones de acciones */
+.view-quote {
+    background-color: #7ca9ff;
+}
+
+.view-quote:hover {
+    background-color: grey;
+}
+
+.accept-quote{
+    background-color: green;
+}
+
+.white-icon {
+    color: white;
+}
+
+/* Estilos para los elementos del formulario */
+/* Estilos para agregar borde de color rojo a los inputs cuando hay error*/
+.wrong-date {
+    border-color: red;
+}
+
+/* Estilos para agregar borde de color naranja a los inputs cuando hay avisos*/
+.warning-date {
+    border-color: orange;
+}
+
+/* Estilos para dar espacio entre los inputs de las contraseñas */
+.password-div {
+    display: grid;
+    gap: 5px;
+}
