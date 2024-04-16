@@ -1,0 +1,49 @@
+Options +FollowSymLinks
+RewriteEngine on
+
+#!CONTROLADORES
+#Direccion para el controlador del login
+RewriteRule ^Login$ controllers/login-controller.php
+#Direccion para el controlador del registrer
+RewriteRule ^NewUser$ controllers/registrer-controller.php
+#Direccion para el controlador del Home
+RewriteRule ^Dashboard$ controllers/dashboard-controller.php
+#Direccion para la vista de las cotizaciones
+RewriteRule ^Quotes$ controllers/quotes-controller.php
+#Direccion para el controlador de gestion de cuentas
+RewriteRule ^Accounts$ controllers/account-management-controller.php
+
+#!VISTAS
+#Direccion para la vista de inicio de sesion
+RewriteRule ^$ views/login-view.php
+#Direccion para la vista del registro de nuevo usuario
+RewriteRule ^Registrer$ views/registrer-view.php 
+
+#Direccion para la vista del perfil del usuario
+# RewriteRule ^Profile$ views/profile-view.php
+
+#Direccion para la vista de los productos y categorias
+RewriteRule ^Productos-Categories$ views/products-categories-view.php
+
+#Direccion par la vista de gestion de cuentas
+# RewriteRule ^History$ views/history-view.php
+
+#Direccion para la vista de mostrar producto
+RewriteRule ^Detalles$ views/products-details-view.php
+
+
+#!ACCIONES
+#Direccion para la accion de verificar la existencia de un correo a la hora de registrarse un nuevo usuario
+RewriteRule ^VerifyEmail$ actions/check-email.php
+#Direccion para cerrar sesion del usuario actual
+RewriteRule ^CloseSession$ actions/close-session.php
+#Direccion para extraer la informacion del archivo JSON
+RewriteRule ^Products$ actions/read-catalogue.php
+#Direccion para verificar si el usuario logeado es admin
+RewriteRule ^roll-user$ actions/roll-user.php
+#Direccion para obtener la funcionalidad ajax del dashboard
+RewriteRule ^dash-action$ actions/ajax-dashboard.php
+#Direccion para obtener la funcionalidad ajax de quotes
+RewriteRule ^quotes-action$ actions/ajax-quotes.php
+#Direccion para obtener la funcionalidad ajaz de Account Management
+RewriteRule ^account-management-action$  actions/ajax-account-management.php
