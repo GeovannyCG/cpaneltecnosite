@@ -48,6 +48,15 @@ $(function () {
                         //Se agregar la fila a la tabla que esta en el HTML
                         tablaCuentas.appendChild(filaTabla);
 
+                        // Verificar si el modal ya existe
+                        let modalExistente = document.getElementById(`modalUsuario${e['idUsuario']}`);
+
+                        // Si el modal ya existe, eliminarlo antes de crear uno nuevo
+                        if (modalExistente) {
+                            modalExistente.remove();
+                            alert(`modalUsuario${e['idUsuario']}`);
+                        }
+
                         //Se crea el modal para mostrar los detalles de la cuenta seleccionada
                         let modalUsuario = document.createElement("div");
                         //Se agregan los atributos del div padre para el modal

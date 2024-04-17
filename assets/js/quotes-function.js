@@ -282,6 +282,14 @@ $(function () {
                             });
                         });
 
+                        // Verificar si el modal ya existe
+                        let modalExistente = document.getElementById(`exampleModal${rs["invoice"]}`);
+
+                        // Si el modal ya existe, eliminarlo antes de crear uno nuevo
+                        if (modalExistente) {
+                            modalExistente.remove();
+                        }
+
                         //Crear el Modal donde se mostrara la informacion
                         let modal = document.createElement("div"); //Se crea un modal por cada elemento de la coleccion que devuelva el AJAX
                         modal.classList.add("modal", "fade");
@@ -658,6 +666,14 @@ $(function () {
                         fila.appendChild(estado);
                         fila.appendChild(acciones);
                         tbSegCotizaciones.appendChild(fila);
+
+                        // Verificar si el modal ya existe
+                        let modalExistente = document.getElementById(`detalles-cotizacion-${e["invoice"]}`);
+
+                        // Si el modal ya existe, eliminarlo antes de crear uno nuevo
+                        if (modalExistente) {
+                            modalExistente.remove();
+                        }
 
                         //Crear el Modal donde se mostrara la informacion
                         let modal = document.createElement("div"); //Se crea un modal por cada elemento de la coleccion que devuelva el AJAX
@@ -1448,6 +1464,14 @@ $(function () {
                         fila.appendChild(acciones);
                         tbHistorialCoti.appendChild(fila);
 
+                        // Verificar si el modal ya existe
+                        let modalExistente = document.getElementById(`cotizacion-${e["invoice"]}`);
+
+                        // Si el modal ya existe, eliminarlo antes de crear uno nuevo
+                        if (modalExistente) {
+                            modalExistente.remove();
+                        }
+
                         //Crear el Modal donde se mostrara la informacion
                         let modal = document.createElement("div"); //Se crea un modal por cada elemento de la coleccion que devuelva el AJAX
                         modal.classList.add("modal", "fade");
@@ -1817,6 +1841,14 @@ $(function () {
                         fila.appendChild(estado);
                         fila.appendChild(acciones);
                         tbActCotizaciones.appendChild(fila);
+
+                        // Verificar si el modal ya existe
+                        let modalExistente = document.getElementById(`historial-cotizacion-${e["invoice"]}`);
+
+                        // Si el modal ya existe, eliminarlo antes de crear uno nuevo
+                        if (modalExistente) {
+                            modalExistente.remove();
+                        }
 
                         //Crear el Modal donde se mostrara la informacion
                         let modal = document.createElement("div"); //Se crea un modal por cada elemento de la coleccion que devuelva el AJAX
@@ -3124,6 +3156,14 @@ $(function () {
                                     fila.appendChild(acciones);
                                     tbSegCotizaciones.appendChild(fila);
 
+                                    // Verificar si el modal ya existe
+                                    let modalExistente = document.getElementById(`detalles-cotizacion-${e["invoice"]}`);
+
+                                    // Si el modal ya existe, eliminarlo antes de crear uno nuevo
+                                    if (modalExistente) {
+                                        modalExistente.remove();
+                                    }
+
                                     //Crear el Modal donde se mostrara la informacion
                                     let modal = document.createElement("div"); //Se crea un modal por cada elemento de la coleccion que devuelva el AJAX
                                     modal.classList.add("modal", "fade");
@@ -4138,6 +4178,14 @@ $(function () {
                                         fila.appendChild(acciones);
                                         tbActCotizaciones.appendChild(fila);
 
+                                        // Verificar si el modal ya existe
+                                        let modalExistente = document.getElementById(`historial-cotizacion-${e["invoice"]}`);
+
+                                        // Si el modal ya existe, eliminarlo antes de crear uno nuevo
+                                        if (modalExistente) {
+                                            modalExistente.remove();
+                                        }
+
                                         //Crear el Modal donde se mostrara la informacion
                                         let modal = document.createElement("div"); //Se crea un modal por cada elemento de la coleccion que devuelva el AJAX
                                         modal.classList.add("modal", "fade");
@@ -5151,6 +5199,14 @@ $(function () {
                                         fila.appendChild(estado);
                                         fila.appendChild(acciones);
                                         tbHistorialCoti.appendChild(fila);
+
+                                        // Verificar si el modal ya existe
+                                        let modalExistente = document.getElementById(`cotizacion-${e["invoice"]}`);
+
+                                        // Si el modal ya existe, eliminarlo antes de crear uno nuevo
+                                        if (modalExistente) {
+                                            modalExistente.remove();
+                                        }
 
                                         //Crear el Modal donde se mostrara la informacion
                                         let modal = document.createElement("div"); //Se crea un modal por cada elemento de la coleccion que devuelva el AJAX
