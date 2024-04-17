@@ -13,7 +13,7 @@ $(function () {
     let tbHistorialCoti = document.querySelector("#tb-historial-cotizaciones"); //Tabla para mostrar el historial de cotizaciones
 
     /**
-     * FUNCIONES QUE SE UTILIZARAN A LO LARGO DE LA INTERACCION DEL SIIO
+     * FUNCIONES QUE SE UTILIZARAN A LO LARGO DE LA INTERACCION DEL SITIO
      */
 
     //Dar formato a los precios de los productos mostrados en las cotizaciones
