@@ -12,7 +12,7 @@ $account = $_SESSION['correo'];
 try {
 
     if (!isset($account)) {
-        header("Location: ./");
+        header("Location: ./Cpanel");
         exit();
     } else {
         //Instanciamiento del objeto del modelo

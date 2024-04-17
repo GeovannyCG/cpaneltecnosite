@@ -5,7 +5,7 @@ session_start();
 require_once('../models/dashboard-model.php');
 
 if (!isset($_SESSION['correo'])) {
-    header("Location: ./");
+    header("Location: ./Cpanel");
     exit();
 } else {
     try {

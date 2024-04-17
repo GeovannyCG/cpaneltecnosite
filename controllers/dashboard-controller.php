@@ -9,7 +9,7 @@ $session = $_SESSION["correo"];
 
 //Validar si existe una variable de sesion
 if (!isset($session)) {
-    header("Location: ./");
+    header("Location: ./Cpanel");
     exit();
 } else {
     //Estructura try catch para atrapar cuanquier error durante la ejecucion
