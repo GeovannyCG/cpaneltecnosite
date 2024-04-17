@@ -40,7 +40,9 @@ try {
                 'delivery_preferences' => $nq['delivery_preferences_c_q'],
                 'date_create' => $nq['date_create_q'],
                 'products_id' => $nq['products_id_q'],
-                'ammount_products' => $nq['amount_products_q']
+                'status' => $nq['status_q'],
+                'ammount_products' => $nq['amount_products_q'],
+                'prices_products' => $nq['price_products_q']
             );
         }
         sleep(3);

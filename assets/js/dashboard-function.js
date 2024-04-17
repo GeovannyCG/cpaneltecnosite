@@ -12,6 +12,7 @@ $(function () {
     let tbQuotesActive = document.querySelector("#tbody-quotes-actives"); //DOM del tbody de la tabla de cotizaciones activas
     let tbQuotesHistory = document.querySelector("#tbody-quotes-history"); //DOM del tbody de la tabla de historial cotizaciones
     let tbUsersAccounts = document.querySelector("#tbody-quotes-accounts") //DOM del tbody de la tabla de cuentas de usuarios
+    let btnRecargar = document.querySelectorAll(".refresh");
 
     //!FUNCIONES
 
@@ -74,7 +75,7 @@ $(function () {
 
     //Funcion para extraer las nuevas cotizaciones y mostrarlas en pantalla
     function refreshQuotes() {
-        phTableQuotes(newQuotes);
+
 
         $.ajax({ //Solicitud ajax para extraer las cotizaciones
             type: "GET",
@@ -113,6 +114,7 @@ $(function () {
             <td>
             ${e["names"]} ${e["surname"]}
             </td>
+            <td> <h5><span class="badge text-bg-success">${e["status"]}</span></h5></td>
             <td class="actions-buttons">
             <button class="btn view-quote" data-bs-toggle="modal" data-bs-target="#exampleModal${e["invoice"]}"><i
                     class="bi bi-eye-fill white-icon"></i></button>
@@ -175,6 +177,14 @@ $(function () {
                             });
                         }
 
+                        // Verificar si el modal ya existe
+                        let modalExistente = document.getElementById(`exampleModal${e["invoice"]}`);
+
+                        // Si el modal ya existe, eliminarlo antes de crear uno nuevo
+                        if (modalExistente) {
+                            modalExistente.remove();
+                        }
+
                         // Crear y configurar el modal
                         let modal = document.createElement("div"); //Se crea un modal por cada elemento de la coleccion que devuelva el AJAX
                         modal.classList.add("modal", "fade");
@@ -184,7 +194,7 @@ $(function () {
                         modal.setAttribute("aria-labelledby", "exampleModalLabel");
                         modal.setAttribute("aria-hidden", "true");
                         modal.innerHTML = `
-                        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                        <div class="modal-dialog modal-dialog-scrollable modal-xl">
                             <div class="modal-content">
                             <div class="modal-header">
                             <h2 class="modal-title fs-5" id="exampleModalLabel">Solicitud de cotizacion #
@@ -293,6 +303,7 @@ $(function () {
                                             <th scope="col">Imagen</th>
                                             <th scope="col">Nombre</th>
                                             <th scope="col">Cantidad</th>
+                                            <th scope="col">Subtotal</th>
                                         </tr>
                                     </thead>
                                     <tbody id="tabla${e["invoice"]}">
@@ -315,17 +326,103 @@ $(function () {
                         //Se extraen los valores de los productos y cantidades
                         let idProductos = e["products_id"];
                         let cantidadProductos = e["ammount_products"];
+                        let preciosProductos = e["prices_products"];
 
                         //Se convierten en un array
                         let arrayIds = idProductos.split(","); //Se 
                         let arrayCantidad = cantidadProductos.split(",");
+                        let arrayPrecios = preciosProductos.split(",");
+                        let arrayInt = arrayPrecios.map(str => parseFloat(str));
 
                         //El array de los idProductos se convierte en un JSON que sera enviado por una consulta AJAX
                         let productosArray = JSON.stringify(arrayIds);
 
                         let dom = "#tabla" + e["invoice"];
 
-                        phTableQuotes(document.querySelector(dom));
+                        //Agregar el efecto de carga en las tablas donde se mostraran los productos
+                        document.querySelector(dom).innerHTML = `
+                        <tr>
+                                <td>
+                                    <p class="placeholder-glow">
+                                        <span class="placeholder col-10"></span>
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="placeholder-glow">
+                                        <span class="placeholder col-10"></span>
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="placeholder-glow">
+                                        <span class="placeholder col-10"></span>
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="placeholder-glow">
+                                        <span class="placeholder col-10"></span>
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="placeholder-glow">
+                                        <span class="placeholder col-10"></span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p class="placeholder-glow">
+                                        <span class="placeholder col-10"></span>
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="placeholder-glow">
+                                        <span class="placeholder col-10"></span>
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="placeholder-glow">
+                                        <span class="placeholder col-10"></span>
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="placeholder-glow">
+                                        <span class="placeholder col-10"></span>
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="placeholder-glow">
+                                        <span class="placeholder col-10"></span>
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p class="placeholder-glow">
+                                        <span class="placeholder col-10"></span>
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="placeholder-glow">
+                                        <span class="placeholder col-10"></span>
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="placeholder-glow">
+                                        <span class="placeholder col-10"></span>
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="placeholder-glow">
+                                        <span class="placeholder col-10"></span>
+                                    </p>
+                                </td>
+                                <td>
+                                    <p class="placeholder-glow">
+                                        <span class="placeholder col-10"></span>
+                                    </p>
+                                </td>
+                            </tr>
+                        `;
 
                         $.ajax({
                             type: "GET",
@@ -342,10 +439,22 @@ $(function () {
                                             <td><img src="${rest["imagen"]}" alt="producto" width="200px" height="auto"></td>
                                             <td>${rest["nombre"]}</td>
                                             <td>${cantidad}</td>
+                                            <td>$${formatNumber(arrayInt[index])} MXN</td>
                                         </tr>
                                     `;
                                     document.querySelector(dom).innerHTML += contenidoHTML;
                                 });
+
+                                let filaTotal = document.createElement("tr");
+                                filaTotal.innerHTML = `
+                                <th></th>
+                                <td></td>
+                                <td></td>
+                                <td><strong>Total:</strong></td>
+                                <td>${totalVent(arrayInt)}</td>
+                                `;
+
+                                document.querySelector(dom).appendChild(filaTotal);
                             },
                             error: function (jqXHR, textStatus, errorThrown) {
                                 console.log(jqXHR);
@@ -458,6 +567,14 @@ $(function () {
                         fila.appendChild(estado);
                         fila.appendChild(acciones);
                         tbQuotesActive.appendChild(fila);
+
+                        // Verificar si el modal ya existe
+                        let modalExistente = document.getElementById(`historial-cotizacion-${e["invoice"]}`);
+
+                        // Si el modal ya existe, eliminarlo antes de crear uno nuevo
+                        if (modalExistente) {
+                            modalExistente.remove();
+                        }
 
                         //Crear el Modal donde se mostrara la informacion
                         let modal = document.createElement("div"); //Se crea un modal por cada elemento de la coleccion que devuelva el AJAX
@@ -835,6 +952,14 @@ $(function () {
                         fila.appendChild(acciones);
                         tbQuotesHistory.appendChild(fila);
 
+                        // Verificar si el modal ya existe
+                        let modalExistente = document.getElementById(`cotizacion-${e["invoice"]}`);
+
+                        // Si el modal ya existe, eliminarlo antes de crear uno nuevo
+                        if (modalExistente) {
+                            modalExistente.remove();
+                        }
+
                         //Crear el Modal donde se mostrara la informacion
                         let modal = document.createElement("div"); //Se crea un modal por cada elemento de la coleccion que devuelva el AJAX
                         modal.classList.add("modal", "fade");
@@ -1163,6 +1288,14 @@ $(function () {
                         //Se agregar la fila a la tabla que esta en el HTML
                         tbUsersAccounts.appendChild(filaTabla);
 
+                        // Verificar si el modal ya existe
+                        let modalExistente = document.getElementById(`modalUsuario${e['idUsuario']}`);
+
+                        // Si el modal ya existe, eliminarlo antes de crear uno nuevo
+                        if (modalExistente) {
+                            modalExistente.remove();
+                        }
+
                         //Se crea el modal para mostrar los detalles de la cuenta seleccionada
                         let modalUsuario = document.createElement("div");
                         //Se agregan los atributos del div padre para el modal
@@ -1256,10 +1389,6 @@ $(function () {
             }
         });
     }
-
-
-
-
 
     /**
      * MAIN ***********************************************************************
@@ -1419,18 +1548,392 @@ $(function () {
 
         //Cargar los datos de la tabla cotizaciones
         refreshQuotes();
+        //Agregar evento de click cl boton de recargar
+        btnRecargar[0].addEventListener("click", () => {
+            newQuotes.innerHTML = `<tr>
+                <td>
+                <p class="placeholder-glow">
+                    <span class="placeholder col-10"></span>
+                </p>
+                </td>
+                <td>
+                <p class="placeholder-glow">
+                    <span class="placeholder col-10"></span>
+                </p>
+                </td>
+                <td>
+                <p class="placeholder-glow">
+                    <span class="placeholder col-10"></span>
+                </p>
+                </td>
+                <td>
+                <p class="placeholder-glow">
+                    <span class="placeholder col-10"></span>
+                </p>
+                </td>
+                <td>
+                <p class="placeholder-glow">
+                    <span class="placeholder col-10"></span>
+                </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <p class="placeholder-glow">
+                    <span class="placeholder col-10"></span>
+                </p>
+                </td>
+                <td>
+                <p class="placeholder-glow">
+                    <span class="placeholder col-10"></span>
+                </p>
+                </td>
+                <td>
+                <p class="placeholder-glow">
+                    <span class="placeholder col-10"></span>
+                </p>
+                </td>
+                <td>
+                <p class="placeholder-glow">
+                    <span class="placeholder col-10"></span>
+                </p>
+                </td>
+                <td>
+                <p class="placeholder-glow">
+                    <span class="placeholder col-10"></span>
+                </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <p class="placeholder-glow">
+                    <span class="placeholder col-10"></span>
+                </p>
+                </td>
+                <td>
+                <p class="placeholder-glow">
+                    <span class="placeholder col-10"></span>
+                </p>
+                </td>
+                <td>
+                <p class="placeholder-glow">
+                    <span class="placeholder col-10"></span>
+                </p>
+                </td>
+                <td>
+                <p class="placeholder-glow">
+                    <span class="placeholder col-10"></span>
+                </p>
+                </td>
+                <td>
+                <p class="placeholder-glow">
+                    <span class="placeholder col-10"></span>
+                </p>
+                </td>
+            </tr>`;
+            refreshQuotes();
+        });
 
         if (tbQuotesActive) {
             getAllActiveQuotes();
+
+            btnRecargar[1].addEventListener("click", () => {
+                tbQuotesActive.innerHTML = `<tr>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                </tr>`;
+
+                getAllActiveQuotes();
+            });
         }
 
         if (tbQuotesHistory) {
             getHistoryQuotes();
+
+            btnRecargar[2].addEventListener("click", () => {
+                tbQuotesHistory.innerHTML = `<tr>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                </tr>`;
+
+                getHistoryQuotes();
+            });
         }
 
         if (tbUsersAccounts) {
             getAccounts();
+
+            btnRecargar[3].addEventListener("click", () => {
+                tbUsersAccounts.innerHTML = `<tr>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                    <td>
+                    <p class="placeholder-glow">
+                        <span class="placeholder col-10"></span>
+                    </p>
+                    </td>
+                </tr>
+                <tr>
+                        <td>
+                        <p class="placeholder-glow">
+                            <span class="placeholder col-10"></span>
+                        </p>
+                        </td>
+                        <td>
+                        <p class="placeholder-glow">
+                            <span class="placeholder col-10"></span>
+                        </p>
+                        </td>
+                        <td>
+                        <p class="placeholder-glow">
+                            <span class="placeholder col-10"></span>
+                        </p>
+                        </td>
+                        <td>
+                        <p class="placeholder-glow">
+                            <span class="placeholder col-10"></span>
+                        </p>
+                        </td>
+                        <td>
+                        <p class="placeholder-glow">
+                            <span class="placeholder col-10"></span>
+                        </p>
+                        </td>
+                        <td>
+                        <p class="placeholder-glow">
+                            <span class="placeholder col-10"></span>
+                        </p>
+                        </td>
+                        <td>
+                        <p class="placeholder-glow">
+                            <span class="placeholder col-10"></span>
+                        </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <p class="placeholder-glow">
+                            <span class="placeholder col-10"></span>
+                        </p>
+                        </td>
+                        <td>
+                        <p class="placeholder-glow">
+                            <span class="placeholder col-10"></span>
+                        </p>
+                        </td>
+                        <td>
+                        <p class="placeholder-glow">
+                            <span class="placeholder col-10"></span>
+                        </p>
+                        </td>
+                        <td>
+                        <p class="placeholder-glow">
+                            <span class="placeholder col-10"></span>
+                        </p>
+                        </td>
+                        <td>
+                        <p class="placeholder-glow">
+                            <span class="placeholder col-10"></span>
+                        </p>
+                        </td>
+                        <td>
+                        <p class="placeholder-glow">
+                            <span class="placeholder col-10"></span>
+                        </p>
+                        </td>
+                        <td>
+                        <p class="placeholder-glow">
+                            <span class="placeholder col-10"></span>
+                        </p>
+                        </td>
+                    </tr>`;
+
+                getAccounts();
+            });
         }
+
     } catch (error) {
         //Mostrar el error atrapado por el try-catch
         console.error(error);

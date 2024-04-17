@@ -199,10 +199,92 @@
                   <th scope="col">Folio</th>
                   <th>fecha de solicitud</th>
                   <th>Nombre y apellidos</th>
+                  <th>Estado</th>
                   <th>Acciones</th>
                 </tr>
               </thead>
               <tbody id="table-show-quotes">
+                <tr>
+                  <td>
+                    <p class="placeholder-glow">
+                      <span class="placeholder col-10"></span>
+                    </p>
+                  </td>
+                  <td>
+                    <p class="placeholder-glow">
+                      <span class="placeholder col-10"></span>
+                    </p>
+                  </td>
+                  <td>
+                    <p class="placeholder-glow">
+                      <span class="placeholder col-10"></span>
+                    </p>
+                  </td>
+                  <td>
+                    <p class="placeholder-glow">
+                      <span class="placeholder col-10"></span>
+                    </p>
+                  </td>
+                  <td>
+                    <p class="placeholder-glow">
+                      <span class="placeholder col-10"></span>
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="placeholder-glow">
+                      <span class="placeholder col-10"></span>
+                    </p>
+                  </td>
+                  <td>
+                    <p class="placeholder-glow">
+                      <span class="placeholder col-10"></span>
+                    </p>
+                  </td>
+                  <td>
+                    <p class="placeholder-glow">
+                      <span class="placeholder col-10"></span>
+                    </p>
+                  </td>
+                  <td>
+                    <p class="placeholder-glow">
+                      <span class="placeholder col-10"></span>
+                    </p>
+                  </td>
+                  <td>
+                    <p class="placeholder-glow">
+                      <span class="placeholder col-10"></span>
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="placeholder-glow">
+                      <span class="placeholder col-10"></span>
+                    </p>
+                  </td>
+                  <td>
+                    <p class="placeholder-glow">
+                      <span class="placeholder col-10"></span>
+                    </p>
+                  </td>
+                  <td>
+                    <p class="placeholder-glow">
+                      <span class="placeholder col-10"></span>
+                    </p>
+                  </td>
+                  <td>
+                    <p class="placeholder-glow">
+                      <span class="placeholder col-10"></span>
+                    </p>
+                  </td>
+                  <td>
+                    <p class="placeholder-glow">
+                      <span class="placeholder col-10"></span>
+                    </p>
+                  </td>
+                </tr>
               </tbody>
             </table>
 
@@ -320,7 +402,7 @@
                 </tbody>
               </table>
 
-              <a href="./Quotes" class="btn-show-more">Mostrar todas  las cotizaciones activas</a>
+              <a href="./Quotes" class="btn-show-more">Mostrar todas las cotizaciones activas</a>
             </div>
 
             <!-- Tabla para mostrar el historial de cotizaciones -->
