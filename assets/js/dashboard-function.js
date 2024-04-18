@@ -76,7 +76,6 @@ $(function () {
     //Funcion para extraer las nuevas cotizaciones y mostrarlas en pantalla
     function refreshQuotes() {
 
-
         $.ajax({ //Solicitud ajax para extraer las cotizaciones
             type: "GET",
             url: "./dash-action",
@@ -88,15 +87,14 @@ $(function () {
                 if (!response || Object.keys(response).length === 0) { //Si no hay nuevas cotizaciones se mostrar el mensaje de vacio
                     let mssgEmpety = document.createElement("tr");
                     mssgEmpety.innerHTML = `
-                    <td colspan="3">
-                    <center>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" style="color: gray;" class="bi bi-clipboard2-check-fill" viewBox="0 0 16 16">
-                            <path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5"/>
-                            <path d="M4.085 1H3.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1h-.585q.084.236.085.5V2a1.5 1.5 0 0 1-1.5 1.5h-5A1.5 1.5 0 0 1 4 2v-.5q.001-.264.085-.5m6.769 6.854-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708.708"/>
-                        </svg>
-                        <h4 style="color: gray;">No hay nuevas cotizaciones...</h4>
-                    </center>
-                    <td/>
+                    <tr>
+                        <td colspan="5" style="text-align: center;">
+                            <svg xmlns="http://www.w3.org/2000/svg" style="color: gray"; width="70" height="70" fill="currentColor" class="bi bi-inbox-fill" viewBox="0 0 16 16">
+                                <path d="M4.98 4a.5.5 0 0 0-.39.188L1.54 8H6a.5.5 0 0 1 .5.5 1.5 1.5 0 1 0 3 0A.5.5 0 0 1 10 8h4.46l-3.05-3.812A.5.5 0 0 0 11.02 4zm-1.17-.437A1.5 1.5 0 0 1 4.98 3h6.04a1.5 1.5 0 0 1 1.17.563l3.7 4.625a.5.5 0 0 1 .106.374l-.39 3.124A1.5 1.5 0 0 1 14.117 13H1.883a1.5 1.5 0 0 1-1.489-1.314l-.39-3.124a.5.5 0 0 1 .106-.374z"/>
+                            </svg>
+                            <h5 style="color: gray;">Aun no hay nuevas cotizaciones...</h5>
+                        </td>
+                    </tr>
                     `;
 
                     newQuotes.appendChild(mssgEmpety);
@@ -152,6 +150,88 @@ $(function () {
                                                         showConfirmButton: false,
                                                         timer: 1500,
                                                     });
+
+                                                    newQuotes.innerHTML = `<tr>
+                                                        <td>
+                                                        <p class="placeholder-glow">
+                                                            <span class="placeholder col-10"></span>
+                                                        </p>
+                                                        </td>
+                                                        <td>
+                                                        <p class="placeholder-glow">
+                                                            <span class="placeholder col-10"></span>
+                                                        </p>
+                                                        </td>
+                                                        <td>
+                                                        <p class="placeholder-glow">
+                                                            <span class="placeholder col-10"></span>
+                                                        </p>
+                                                        </td>
+                                                        <td>
+                                                        <p class="placeholder-glow">
+                                                            <span class="placeholder col-10"></span>
+                                                        </p>
+                                                        </td>
+                                                        <td>
+                                                        <p class="placeholder-glow">
+                                                            <span class="placeholder col-10"></span>
+                                                        </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p class="placeholder-glow">
+                                                            <span class="placeholder col-10"></span>
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="placeholder-glow">
+                                                            <span class="placeholder col-10"></span>
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="placeholder-glow">
+                                                            <span class="placeholder col-10"></span>
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="placeholder-glow">
+                                                            <span class="placeholder col-10"></span>
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="placeholder-glow">
+                                                            <span class="placeholder col-10"></span>
+                                                            </p>
+                                                        </td>
+                                                        </tr>
+                                                        <tr>
+                                                        <td>
+                                                            <p class="placeholder-glow">
+                                                            <span class="placeholder col-10"></span>
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="placeholder-glow">
+                                                            <span class="placeholder col-10"></span>
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="placeholder-glow">
+                                                            <span class="placeholder col-10"></span>
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="placeholder-glow">
+                                                            <span class="placeholder col-10"></span>
+                                                            </p>
+                                                        </td>
+                                                        <td>
+                                                            <p class="placeholder-glow">
+                                                            <span class="placeholder col-10"></span>
+                                                            </p>
+                                                        </td>
+                                                        </tr>`;
 
                                                     refreshQuotes();
 
