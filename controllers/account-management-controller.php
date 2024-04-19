@@ -13,7 +13,7 @@ $account = $_SESSION['correo'];
 try {
     //Verificar si hay una sesion activa actualmente
     if (!isset($account)) { //Si no hay una activa
-        header("Location: ./");
+        header("Location: ./Cpanel");
         exit();
     } else { //Si hay una activa
         $model = new Account_management_model();

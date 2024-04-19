@@ -1,19 +1,8 @@
 <?php
 session_start();
 
-//Incluir el model dashboard para acceder a sus propiedades
-require_once('../models/dashboard-model.php');
-
 if (!isset($_SESSION['correo'])) {
-    header("Location: ./Cpanel");
-    exit();
-} else {
-    try {
-        $objModel = new Dashboard_model();
-        $showOption = $objModel->showPageAdmin($_SESSION['correo']);
-    } catch (\Throwable $th) {
-        echo "<script>console.log('".$th."');</script>";
-    }
+    echo "<script>location.href = './'</script>";
 }
 ?>
 
@@ -23,7 +12,7 @@ if (!isset($_SESSION['correo'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Productos/Categorias - Tecnosite</title>
+    <title>Historial - Tecnosite</title>
 
     <!-- Montserrat Font -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -42,8 +31,6 @@ if (!isset($_SESSION['correo'])) {
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./assets/css/dash.css">
-    <!-- CSS propio del apartado -->
-    <link rel="stylesheet" href="./assets/css/products-categories-style.css">
 </head>
 
 <body>
@@ -84,6 +71,7 @@ if (!isset($_SESSION['correo'])) {
                     <ul class="dropdown-menu text-small shadow">
                         <!-- Cuenta de usuario -->
                         <p style="padding: 10px;"><b><?php echo $_SESSION['correo'] ?></b></p>
+                        <li><a class="dropdown-item" href="./Profile"><i class="bi bi-person"></i> Perfil</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -133,11 +121,10 @@ if (!isset($_SESSION['correo'])) {
                             <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-archive" viewBox="0 0 16 16">
                                 <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5zm13-3H1v2h14zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5" />
                             </svg>
-                            <p>Catalogo</p>
+                            <p>Productos/Categorias</p>
                         </div>
                     </a>
                 </li>
-                <?php if($showOption == true):?>
                 <li class="sidebar-list-item" id="option4">
                     <a href="./Accounts">
                         <div class="optionMenu">
@@ -148,111 +135,25 @@ if (!isset($_SESSION['correo'])) {
                         </div>
                     </a>
                 </li>
-                <?php endif;?>
+                <li class="sidebar-list-item" id="option5">
+                    <a id="option-histori" href="./History">
+                        <div class="optionMenu">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-clock-history" viewBox="0 0 16 16">
+                                <path d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022zm2.004.45a7 7 0 0 0-.985-.299l.219-.976q.576.129 1.126.342zm1.37.71a7 7 0 0 0-.439-.27l.493-.87a8 8 0 0 1 .979.654l-.615.789a7 7 0 0 0-.418-.302zm1.834 1.79a7 7 0 0 0-.653-.796l.724-.69q.406.429.747.91zm.744 1.352a7 7 0 0 0-.214-.468l.893-.45a8 8 0 0 1 .45 1.088l-.95.313a7 7 0 0 0-.179-.483m.53 2.507a7 7 0 0 0-.1-1.025l.985-.17q.1.58.116 1.17zm-.131 1.538q.05-.254.081-.51l.993.123a8 8 0 0 1-.23 1.155l-.964-.267q.069-.247.12-.501m-.952 2.379q.276-.436.486-.908l.914.405q-.24.54-.555 1.038zm-.964 1.205q.183-.183.35-.378l.758.653a8 8 0 0 1-.401.432z" />
+                                <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0z" />
+                                <path d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5" />
+                            </svg>
+                            <p>Historial</p>
+                        </div>
+                    </a>
+                </li>
             </ul>
         </aside>
         <!-- End Sidebar -->
 
         <!-- Main -->
-        <main class="main-container">
-            <div class="main-title">
-                <h2>Catalogo</h2>
-            </div><br>
-
-            <!-- Contenedor para la seccion donde se mostraran los productos -->
-            <div class="header-catalogue">
-                <h4>Productos</h4>
-
-                <!-- Herramientas para busqueda de productos -->
-                <div class="search-tools">
-                    <!-- Buscador -->
-                    <div class="input-group mb-3" id="buscador">
-                        <button class="btn btn-outline-secondary" type="button" id="button-search"><i class="bi bi-search"></i></button>
-                        <input type="text" id="input-search" class="form-control" placeholder="Buscar por nombre..." aria-label="Example text with button addon" aria-describedby="button-addon1">
-                    </div>
-
-                    <select id="slctdProducts" class="form-select" aria-label="Default select example">
-                        <option selected disabled>Cargando categorias...</option>
-                    </select>
-
-                </div>
-            </div><br>
-
-            <div id="div-products" class="products-container">
-
-                <div class="card-product">
-                    <img src="./assets/images/placeholder-image.png" class="card-img-top" alt="">
-                    <div class="card-body">
-                        <h5 class="card-title placeholder-glow">
-                            <span class="placeholder col-6"></span>
-                        </h5>
-                        <p class="card-text placeholder-glow">
-                            <span class="placeholder col-7"></span>
-                            <span class="placeholder col-4"></span>
-                            <span class="placeholder col-4"></span>
-                            <span class="placeholder col-6"></span>
-                            <span class="placeholder col-8"></span>
-                        </p>
-                        <a class="btn btn-primary disabled placeholder col-6" aria-disabled="true"></a>
-                    </div>
-                </div>
-
-                <div class="card-product">
-                    <img src="./assets/images/placeholder-image.png" class="card-img-top" alt="">
-                    <div class="card-body">
-                        <h5 class="card-title placeholder-glow">
-                            <span class="placeholder col-6"></span>
-                        </h5>
-                        <p class="card-text placeholder-glow">
-                            <span class="placeholder col-7"></span>
-                            <span class="placeholder col-4"></span>
-                            <span class="placeholder col-4"></span>
-                            <span class="placeholder col-6"></span>
-                            <span class="placeholder col-8"></span>
-                        </p>
-                        <a class="btn btn-primary disabled placeholder col-6" aria-disabled="true"></a>
-                    </div>
-                </div>
-
-                <div class="card-product">
-                    <img src="./assets/images/placeholder-image.png" class="card-img-top" alt="">
-                    <div class="card-body">
-                        <h5 class="card-title placeholder-glow">
-                            <span class="placeholder col-6"></span>
-                        </h5>
-                        <p class="card-text placeholder-glow">
-                            <span class="placeholder col-7"></span>
-                            <span class="placeholder col-4"></span>
-                            <span class="placeholder col-4"></span>
-                            <span class="placeholder col-6"></span>
-                            <span class="placeholder col-8"></span>
-                        </p>
-                        <a class="btn btn-primary disabled placeholder col-6" aria-disabled="true"></a>
-                    </div>
-                </div>
-
-                <div class="card-product">
-                    <img src="./assets/images/placeholder-image.png" class="card-img-top" alt="">
-                    <div class="card-body">
-                        <h5 class="card-title placeholder-glow">
-                            <span class="placeholder col-6"></span>
-                        </h5>
-                        <p class="card-text placeholder-glow">
-                            <span class="placeholder col-7"></span>
-                            <span class="placeholder col-4"></span>
-                            <span class="placeholder col-4"></span>
-                            <span class="placeholder col-6"></span>
-                            <span class="placeholder col-8"></span>
-                        </p>
-                        <a class="btn btn-primary disabled placeholder col-6" aria-disabled="true"></a>
-                    </div>
-                </div>
-            </div><br>
-
-            <div class="div-button-show">
-                <button id="showMore" class="show-more-products">Ver mas productos</button>
-            </div>
-
+        <main class="main-container" id="mainContainer">
+            <!-- Contenido de la pagina -->
         </main>
         <!-- End Main -->
 
@@ -317,13 +218,6 @@ if (!isset($_SESSION['correo'])) {
     <script src="./assets/js/dash.js"></script>
     <!-- Script de bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <!-- Script de jQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <!-- Script para la funcion ajax -->
-    <script src="./assets/js/products-categories-function.js"></script>
-    <!-- JS para sweetAlert -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 </body>
 
 </html>

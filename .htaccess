@@ -15,7 +15,7 @@ RewriteRule ^Accounts$ controllers/account-management-controller.php
 
 #!VISTAS
 #Direccion para la vista de inicio de sesion
-RewriteRule ^$ views/login-view.php
+RewriteRule ^Cpanel$ views/login-view.php
 #Direccion para la vista del registro de nuevo usuario
 RewriteRule ^Registrer$ views/registrer-view.php 
 
