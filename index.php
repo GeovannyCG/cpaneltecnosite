@@ -6,5 +6,5 @@ session_start();
 if (isset($_SESSION['correo'])) {
     header("Location: ./Dasboard");
 } else {
-    header("Location: ./"); //Si no lo hay redireccionara al formulario de inicio de sesion
+    header("Location: ./Cpanel"); //Si no lo hay redireccionara al formulario de inicio de sesion
 }
