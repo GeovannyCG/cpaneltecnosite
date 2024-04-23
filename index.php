@@ -4,7 +4,7 @@ session_start();
 
 //Se verifica que haya una sesion actualmente
 if (isset($_SESSION['correo'])) {
-    header("Location: ./Dasboard");
+    header("Location: ./Dashboard");
 } else {
     header("Location: ./Cpanel"); //Si no lo hay redireccionara al formulario de inicio de sesion
 }
